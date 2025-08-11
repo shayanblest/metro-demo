@@ -1,0 +1,11 @@
+ul {
+  list-style-type: none;
+}
+
+app-input.inp-ltr {
+  input:not(:placeholder-shown) {
+    direction: ltr;
+  }
+}
+
+

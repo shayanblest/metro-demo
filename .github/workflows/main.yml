@@ -1,0 +1,81 @@
+name: Deploy demo front to Server
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose the environment'
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  SERVER_IP: ${{ secrets.SERVER_IP }}
+  SSH_USER: ${{ secrets.SSH_USER }}
+  SSH_PORT: ${{ secrets.SSH_PORT }}
+  DOCKER_REGISTRY: docker.buludweb.ir
+  IMAGE_NAME: demo/front
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Private Registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ${{ env.DOCKER_REGISTRY }} -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build --build-arg ENV=${{ github.event.inputs.environment }} -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} .
+          docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ env.SSH_PORT }} ${{ env.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to Server without Compose
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          ssh -o StrictHostKeyChecking=no -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SERVER_IP }} <<EOF
+            set -e
+
+            DOCKER_REGISTRY=${{ env.DOCKER_REGISTRY }}
+            IMAGE_NAME=${{ env.IMAGE_NAME }}
+            IMAGE_TAG=${{ github.sha }}
+            IMAGE_TAG=${{ github.sha }}
+
+            echo "Logging into registry..."
+            echo "$DOCKER_PASSWORD" | docker login \$DOCKER_REGISTRY -u "$DOCKER_USERNAME" --password-stdin
+
+            echo "Pulling latest image..."
+            docker pull \$DOCKER_REGISTRY/\$IMAGE_NAME:\$IMAGE_TAG
+
+            echo "Stopping and removing old container..."
+            docker stop demo-front || true
+            docker rm demo-front || true
+
+            echo "Starting new container..."
+            docker run -d \
+              --name demo-front \
+              --restart always \
+              -p 4200:80 \
+              \$DOCKER_REGISTRY/\$IMAGE_NAME:\$IMAGE_TAG
+
+            echo "✅ Deployment complete"
+          EOF

@@ -1,0 +1,21 @@
+.form-control{
+  &[type=number]{
+    -moz-appearance: textfield;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+app-input, app-datetime-picker, app-dropdown {
+  &.ng-invalid.ng-touched {
+    .form-control {
+      border-color: $danger;
+      box-shadow: 0 0 0 0.25rem rgba($danger, 0.25);
+    }
+  }
+}
+
+

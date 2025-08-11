@@ -1,0 +1,13 @@
+<div class="btn-group" dir="ltr">
+  <button type="button" class="btn btn-primary dropdown-toggle" (click)="openMenu()">
+    {{ label }}
+  </button>
+  <ul class="dropdown-menu position-absolute end-0 top-100" [class.show]="isOpen()">
+    @for (item of items; track item.value) {
+      <li>
+        <button class="dropdown-item" (click)="onItemClick(item)">{{ item.text }}</button>
+      </li>
+    }
+  </ul>
+</div>
+

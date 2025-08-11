@@ -1,0 +1,96 @@
+.modal {
+  background-color: $modal-content-bg;
+  position: absolute;
+  top: 10%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  border-radius: $border-radius-lg;
+
+  width: 50%;
+
+  &.modal-sm {
+    width: 30%;
+  }
+
+  &.modal-lg {
+    width: 70%;
+  }
+
+  &>.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:has(.modal-title) {
+      border-bottom: 1px solid var(--gray-30);
+      padding: map-get($spacers, 3) 0;
+    }
+
+    &>.modal-title {
+      padding: 0 map-get($spacers, 6);
+    }
+
+    &>.modal-close {
+      margin: 0;
+      color: var(--body-color);
+      padding: $spacer;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+    }
+
+  }
+
+  &>.modal-body {
+    padding: 0 map-get($spacers, 5) map-get($spacers, 5);
+  }
+
+  z-index: 1000;
+}
+
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  z-index: 100;
+}
+
+
+@media only screen and (max-width: 992px) {
+
+  .modal {
+    width: 100% !important;
+    bottom: 0;
+    position: fixed;
+    top: unset !important;
+
+    &::before {
+      content: ' ';
+      background-color: var(--gray-50);
+      width: 40px;
+      display: block;
+      height: 5px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: map-get($spacers, 2);
+      border-radius: $border-radius-pill;
+    }
+
+    &>.modal-header {
+
+
+      &>.modal-close {
+        display: none;
+      }
+
+    }
+  }
+
+}

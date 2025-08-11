@@ -1,0 +1,41 @@
+<aside>
+  <span class="d-block fs-3">OSE</span>
+  <nav class="mt-10">
+    <ul class="side-menu p-0">
+      <li>
+        <a [routerLink]="['/admin/dashboard']">
+          <i class="bi bi-columns-gap">
+          </i>
+          داشبورد
+        </a>
+      </li>
+      <li>
+        <a>
+          <i class="bi bi-person-lines-fill"></i>
+          کاربران سیستم
+        </a>
+        <ul class="sub-menu">
+          <li>
+            <a [routerLink]="['/admin/users/list']">
+              <i class="bi bi-record2-fill"></i>
+              لیست کاربران
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/admin/roles/list']">
+              <i class="bi bi-record2-fill"></i>
+              لیست نقش ها
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a [routerLink]="['/admin/demo']">
+          <i class="bi bi-bricks">
+          </i>
+          دیزاین سیستم
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

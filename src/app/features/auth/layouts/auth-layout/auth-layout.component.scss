@@ -1,0 +1,20 @@
+app-auth-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.auth-side {
+  flex: 1;
+  height: 100vh;
+}
+
+.background-r {
+  background: url("/images/Group 1.png") no-repeat right center;
+  background-size: contain;
+}
+
+.background-l {
+  background: url("/images/Group 2.png") no-repeat left center;
+  background-size: contain;
+}

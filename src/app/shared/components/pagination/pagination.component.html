@@ -1,0 +1,97 @@
+@if (qParams) {
+  <ul class="pagination flex-wrap">
+    <li class="page-item">
+      @if (activePage > 1) {
+        <a class="page-link" [routerLink]="['./']" [queryParams]="{ page: prevPage }"
+           queryParamsHandling="merge" aria-label="Previous">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      } @else if (activePage <= 1) {
+        <a class="page-link disabled" aria-label="Previous">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      }
+    </li>
+
+    @if (activePage - 5 >= 1) {
+      <li class="page-item">
+      <a [routerLink]="['./']" [queryParams]="{ page: 1 }" queryParamsHandling="merge" class="page-link">1</a>
+      </li>
+    }
+    @if (activePage - 5 > 1) {
+      <li>...</li>
+    }
+    @if (activePage - 4 >= 1) {
+      <li class="page-item" >
+        <a [routerLink]="['./']" [queryParams]="{ page: activePage - 4 }" queryParamsHandling="merge" class="page-link">{{ activePage - 4 }}</a>
+      </li>
+    }
+    @if (activePage - 3 >= 1) {
+      <li class="page-item" >
+        <a [routerLink]="['./']" [queryParams]="{ page: activePage - 3 }" queryParamsHandling="merge" class="page-link">{{ activePage - 3 }}</a>
+      </li>
+    }
+    @if (activePage - 2 >= 1) {
+      <li class="page-item" >
+        <a [routerLink]="['./']" [queryParams]="{ page: activePage - 2 }" queryParamsHandling="merge" class="page-link">{{ activePage - 2 }}</a>
+      </li>
+    }
+    @if (activePage - 1 >= 1) {
+      <li class="page-item">
+        <a [routerLink]="['./']" [queryParams]="{ page: activePage - 1 }" queryParamsHandling="merge" class="page-link">{{ activePage - 1 }}</a>
+      </li>
+    }
+
+    <li class="page-item">
+      <a class="page-link active">{{ activePage }} </a>
+    </li>
+
+    @if (activePage + 1 <= totalPages) {
+      <li class="page-item">
+        <a [routerLink]="['./']" [queryParams]="{ page: activePage + 1 }" queryParamsHandling="merge"
+           class="page-link">{{ activePage + 1 }} </a>
+      </li>
+    }
+    @if (activePage + 2 <= totalPages) {
+      <li class="page-item">
+        <a [routerLink]="['./']" [queryParams]="{ page: activePage + 2 }" queryParamsHandling="merge" class="page-link">{{ activePage + 2 }}</a>
+      </li>
+    }
+
+    @if (activePage + 3 <= totalPages) {
+      <li class="page-item">
+        <a [routerLink]="['./']" [queryParams]="{ page: activePage + 3 }" queryParamsHandling="merge" class="page-link">{{ activePage + 3 }}</a>
+      </li>
+    }
+
+    @if (activePage + 4 <= totalPages) {
+      <li class="page-item">
+        <a [routerLink]="['./']" [queryParams]="{ page: activePage + 4 }" queryParamsHandling="merge" class="page-link">{{ activePage + 4 }}</a>
+      </li>
+    }
+
+    @if (activePage + 5 < totalPages) {
+      <li>...</li>
+    }
+
+    @if (activePage + 5 <= totalPages) {
+      <li class="page-item">
+        <a [routerLink]="['./']" [queryParams]="{ page: totalPages }" queryParamsHandling="merge" class="page-link">{{ totalPages }}</a>
+      </li>
+    }
+
+    <li class="page-item">
+      @if (activePage < totalPages) {
+        <a class="page-link" [routerLink]="['./']"
+           [queryParams]="{ page: nextPage }" queryParamsHandling="merge" aria-label="Next">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+      }
+      @if (activePage >= totalPages) {
+        <a class="page-link disabled" aria-label="Next">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+      }
+    </li>
+  </ul>
+}

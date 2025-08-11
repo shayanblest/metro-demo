@@ -1,0 +1,129 @@
+@import '_custom-variables';
+
+app-datetime-picker {
+    position: relative;
+
+    &.ng-invalid.ng-touched {
+        .form-control {
+            border: 1px solid var(--danger);
+        }
+    }
+
+}
+
+.datetime-picker {
+    padding: 5px;
+    border-radius: $border-radius-lg ;
+    position: absolute;
+    z-index: 100;
+    transition: transform 0.3s;
+    transform: scaleY(0);
+    transform-origin: top;
+
+    &.open {
+        transform: scaleY(1);
+    }
+
+    &>.dp-container {
+        display: flex;
+
+        &>.years {
+            max-height: 230px;
+            overflow-y: auto;
+            background-color: var(--frame);
+            border-radius: $border-radius-lg;
+            padding: 5px;
+            padding-right: 0;
+            min-width: 60px;
+            overflow-x: hidden;
+
+            li>.btn {
+                font-size: 12px !important;
+
+                &.y-start-range,
+                &.y-end-range {
+                    background-color: var(--gray-50);
+                }
+
+                &.y-start-range:not(.y-end-range) {
+                    border-top-left-radius: 0 !important;
+                    border-top-right-radius: 0 !important;
+                }
+
+                &.y-in-range {
+                    background-color: var(--gray-30);
+                    border-radius: 0 !important;
+                }
+
+                &.y-end-range:not(.y-start-range) {
+                    border-bottom-left-radius: 0 !important;
+                    border-bottom-right-radius: 0 !important;
+                }
+            }
+        }
+
+        .dp-table {
+            text-align: center;
+            border-collapse: collapse;
+
+            th {
+                font-size: 12px;
+                color: var(--gray-50);
+                font-weight: $font-weight-normal;
+                padding-bottom: 5px;
+            }
+
+            td {
+                &>.btn {
+                    font-size: 12px;
+                    width: 100%;
+
+                    &.active {
+                        background-color: var(--bulud-primary);
+                    }
+
+                    &.in-range {
+                        background-color: var(--primary-subtle);
+                        border-radius: 0 !important;
+                    }
+
+                    &.start-range,
+                    &.end-range {
+                        background-color: var(--primary);
+                        color: var(--dark);
+                    }
+                }
+            }
+
+        }
+    }
+
+}
+
+html[dir=rtl] {
+    .datetime-picker {
+        .start-range {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .end-range {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+}
+
+html[dir=ltr] {
+    .datetime-picker {
+        .start-range {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .end-range {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}

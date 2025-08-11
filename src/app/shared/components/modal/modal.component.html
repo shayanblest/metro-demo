@@ -1,0 +1,15 @@
+<div class="modal-backdrop" #backDropRef (click)="closeFromBackDrop($event)">
+    <div class="modal" [class]="cssClass">
+        <div class="modal-header"  [class]="headerClass">
+            <div class="modal-title" *ngIf="titleTemplate">
+                <ng-container *ngIf="isOpen" [ngTemplateOutlet]="titleTemplate"></ng-container>
+            </div>
+            <button type="button" *ngIf="closable" class="modal-close" (click)="close()"><i
+                    class="bi bi-x fs-2"></i></button>
+        </div>
+
+        <div class="modal-body" [class]="bodyClass" *ngIf="bodyTemplate">
+            <ng-container *ngIf="isOpen" [ngTemplateOutlet]="bodyTemplate"></ng-container>
+        </div>
+    </div>
+</div>

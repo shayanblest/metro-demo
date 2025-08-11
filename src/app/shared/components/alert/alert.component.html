@@ -1,0 +1,42 @@
+<div class="modal" app-modal #alertModal="modal">
+    <div class="modal-dialog">
+        <div class="modal-content" *ngIf="options">
+            <div class="modal-header" *ngIf="options.title || canClose">
+                <h4 class="modal-title" *ngIf="options.title">{{ options.title }}</h4>
+                <button type="button" *ngIf="canClose" class="btn-close close m-0" (click)="alertModal.hide()">
+                    <span class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-flush py-4">
+
+                    <div class="card-body text-center">
+                        <div class="fs-1 mb-5">
+                            <i class="bi bi-check-circle text-success" *ngIf="options.icon == 'success'"></i>
+                            <i class="bi bi-x-circle text-danger" *ngIf="options.icon == 'danger'"></i>
+                            <i class="bi bi-exclamation-triangle text-warning" *ngIf="options.icon == 'warning'"></i>
+                            <i class="bi bi-info-circle text-info" *ngIf="options.icon == 'info'"></i>
+                            <div class="spinner-border text-primary" *ngIf="options.icon == 'loading'">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                        <span class="fs-5">{{options.text}}</span>
+                    </div>
+
+                </div>
+
+                <div class="row p-5">
+
+                    <div class="col text-center">
+                        <button *ngIf="options.showCancelButton" class="btn btn-light me-5"
+                            (click)="alertModal.hide()">بازگشت</button>
+                        <button *ngIf="options.showConfirmButton" (click)="onConfirm()" type="submit"
+                            class="btn btn-primary me-5">بله</button>
+                        <button *ngIf="options.showDenyButton" (click)="alertModal.hide()" type="submit"
+                            class="btn btn-danger">خیر</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

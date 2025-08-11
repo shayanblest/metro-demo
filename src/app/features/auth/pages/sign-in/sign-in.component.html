@@ -1,0 +1,26 @@
+<form (submit)="login()" [formGroup]="form" class="col">
+  <h2 class="text-center fs-5 mb-10">ورود به حساب کاربری</h2>
+  <div class="card-body mt-10">
+    @if (statusCode() == 401) {
+      <div class="alert alert-danger">نام کاربری یا رمز عبور اشتباه است !</div>
+    }
+    <div class="mb-5">
+      <app-input class="inp-ltr" formControlName="userName" inputType="text" label="نام کاربری"></app-input>
+    </div>
+    <div>
+      <app-input formControlName="password" inputType="password" label="رمز عبور"></app-input>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end">
+    <a [routerLink]="['/auth', 'reset-password']" class="text-decoration-none d-block p-3 pe-0 fs-6">فراموشی رمز
+      عبور</a>
+  </div>
+
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <button [submitButton]="buttonStatus()" class="btn btn-primary w-100" proccessingText="در حال ورود..."
+              type="submit">ورود
+      </button>
+    </div>
+  </div>
+</form>

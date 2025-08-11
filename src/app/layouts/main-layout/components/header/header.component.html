@@ -1,0 +1,62 @@
+<header class="p-5 row justify-content-between">
+  <h3 class="m-0 col">{{ pageTitle$ | async }}</h3>
+  <div class="d-flex gap-7 col-auto align-items-center">
+    <div #notif class="position-relative">
+      <button class="btn position-relative" (click)="toggleNotif()">
+        <span class="badge bg-danger position-absolute translate-middle">{{ '3' | persianDigits }}</span>
+        <i class="bi bi-bell text-light fs-3"></i>
+      </button>
+      <div [class.d-none]="!showNotif()" class="notification-list row end-0 rounded shadow-lg p-5">
+        <span class="border-1 border-bottom fs-5 fw-bold pb-4">پیام ها</span>
+        <ul class="p-0">
+          <li>
+            <div class="d-flex align-items-center border-bottom gap-5">
+              <div class="border-3 p-3 border-info border-start unread">
+                <span class="fw-bold mb-1 d-block fs-6">موضوع پیام تست</span>
+                <span class="text-muted">متن پیام تست، برای نمایش جزئسیات بیشتر کلیک کنید</span>
+              </div>
+            </div>
+            <div class="d-flex align-items-center border-bottom gap-5">
+              <div class="p-3">
+                <span class="fw-bold mb-1 d-block fs-6">موضوع پیام تست</span>
+                <span class="text-muted">متن پیام تست، برای نمایش جزئسیات بیشتر کلیک کنید</span>
+              </div>
+            </div>
+            <div class="d-flex align-items-center border-bottom gap-5">
+              <div class="p-3">
+                <span class="fw-bold mb-1 d-block fs-6">موضوع پیام تست</span>
+                <span class="text-muted">متن پیام تست، برای نمایش جزئسیات بیشتر کلیک کنید</span>
+              </div>
+            </div>
+            <div class="d-flex align-items-center border-bottom gap-5">
+              <div class="border-3 p-3 border-info border-start unread">
+                <span class="fw-bold mb-1 d-block fs-6">موضوع پیام تست</span>
+                <span class="text-muted">متن پیام تست، برای نمایش جزئسیات بیشتر کلیک کنید</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="avatar me-5">
+      <img class="w-100 rounded" src="/images/admin-avatar.webp" alt="">
+      <ul class="avatar-nav end-0 rounded shadow-lg">
+        <li class="p-1">
+          <div class="d-flex p-4 align-items-center border-bottom">
+            <img class="col-3 rounded" src="/images/admin-avatar.webp" alt="">
+            <div class="ms-3">
+              <span class="fw-bold mb-1 d-block fs-6">{{ jwtInfo()?.fullName }}</span>
+              <span class="text-muted">{{ jwtInfo()?.roleDisplayName }}</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <button class="btn w-100 d-flex align-items-center px-5" (click)="logout()">
+            <i class="bi bi-box-arrow-left fs-4 me-3"></i>
+            <span>خروج از حساب کاربری</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

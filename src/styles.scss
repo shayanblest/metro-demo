@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+$mode: default;
+
+
+@import './scss/fonts.rtl';
+// Styles.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+
+@import "./scss/custom-variables";
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+// 6. Optionally include any other parts as needed
+// @import "../node_modules/bootstrap/scss/utilities";
+@import "./scss/utilities.rtl";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../node_modules/bootstrap/scss/utilities/api";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons";
+
+// 8. Add additional custom code here
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/badge";
+@import "../node_modules/bootstrap/scss/pagination";
+@import "../node_modules/bootstrap/scss/close";
+@import "../node_modules/bootstrap/scss/tables";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/spinners";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/dropdown";
+@import "../node_modules/bootstrap/scss/button-group";
+
+@import "./scss/components/bullet";
+@import "./scss/components/card";
+@import "./scss/components/form-control";
+@import "./scss/components/form-check";
+@import "./scss/components/modal";
+
+@import "./scss/print";
+@import "./scss/form-print";
+@import "../node_modules/ngx-toastr/toastr.css";
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+}
+
+a,
+.c-pointer {
+  cursor: pointer;
+}
+
+
+.table {
+
+  th,
+  td {
+    vertical-align: middle;
+  }
+}
+
+.dir-ltr {
+  direction: ltr;
+}
+
+.bi {
+  line-height: 0 !important;
+}
+
+
+input[type=text].invalid,
+input[type=password].invalid {
+  border-color: var(--#{$prefix}danger);
+}
+
+
+.flex-full {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.toast-error {
+  min-width: 450px;
+  direction: rtl;
+}

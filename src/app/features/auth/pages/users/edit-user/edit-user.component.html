@@ -1,0 +1,98 @@
+<div class="container">
+  <form (submit)="save()" [formGroup]="form" class="not-printable">
+    <div class="row">
+      <div class="col">
+        <div class="card card-flush py-4">
+          <div class="card-header">
+            <div class="card-title">
+              <h2 class="fs-5">اطلاعات کاربر</h2>
+            </div>
+          </div>
+          <div class="card-body">
+
+            <div class="mb-5 row align-items-start">
+              <app-input class="col" formControlName="firstName" inputType="text" label="نام"></app-input>
+              <app-input class="col" formControlName="lastName" inputType="text" label="نام خانوادگی"></app-input>
+              <app-input [libMaxLength]="11" class="col inp-ltr" formControlName="phoneNumber" inputType="text"
+                         label="شماره موبایل" libInputFilter="[0-9]"></app-input>
+              <app-input [libMaxLength]="10" class="col inp-ltr" formControlName="nationalCode" inputType="text"
+                         label="کد ملی" libInputFilter="[0-9]"></app-input>
+            </div>
+
+            <div class="mb-5 row align-items-start">
+              <app-dropdown [items]="roles()" class="col" formControlName="role" label="نقش کاربر" valueField="name">
+                <ng-template #selectedItemTemplate let-selected>
+                  <div>{{ selected.displayName }}</div>
+                </ng-template>
+                <ng-template #itemTemplate let-model>
+                  <div class="px-4 py-2">{{ model.displayName }}</div>
+                </ng-template>
+              </app-dropdown>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="py-4">
+          <div class="card card-flush col py-4">
+            <div class="card-header">
+              <div class="card-title">
+                <h2 class="fs-5">مشخصات کاربری</h2>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="mb-5 row align-items-start">
+                <app-input autocomplete="new-password" class="col" formControlName="password" inputType="password"
+                           label="رمز عبور"></app-input>
+                <div class="col">
+                  <app-input formControlName="confirmPassword" inputType="password" label="تکرار رمز عبور"></app-input>
+                  @if (form.get('confirmPassword')?.hasError('mismatch') && form.get('confirmPassword')?.touched) {
+                    <span class="text-danger">
+                    رمز عبور و تکرار آن مطابقت ندارند.
+                  </span>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="row flex-column position-sticky" style="top: 10px">
+          <div class="card card-flush py-4 mb-5">
+            <div class="card-header">
+              <div class="card-title">
+                <h2 class="fs-5">عکس پرسنلی</h2>
+              </div>
+            </div>
+            <div class="card-body">
+              <app-file-upload #fileUpload></app-file-upload>
+            </div>
+          </div>
+          <div class="card card-flush col py-4">
+            <div class="card-header">
+              <div class="card-title border-bottom">
+                <h2 class="fs-5">عملیات</h2>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="mb-5">
+              </div>
+            </div>
+            <div class="col d-flex gap-5 justify-content-center">
+              <a [routerLink]="['/admin', 'users', 'list']" class="btn">بازگشت</a>
+              <button [class.disabled]="form.invalid" [submitButton]="buttonStatus()" class="btn btn-primary"
+                      type="submit">
+                ذخیره
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--<pre>-->
+<!--  {{ form.value | json }}-->
+<!--</pre>-->

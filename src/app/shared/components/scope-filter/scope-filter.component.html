@@ -1,0 +1,36 @@
+<div class="d-flex gap-3">
+  <app-dropdown *appAdminLevel="'national'" (itemChange)="provinceChanged($event)" [items]="provinces()"
+                [datasetFilter]="[(modelPrefix ? modelPrefix + '.' : '') + 'County.ProvinceId']"
+                [selectedItem]="selectedProvince()"
+                [hasReset]="true"
+                class="col-6"
+                label="استان">
+    <ng-template #placeHolder>
+      <span>استان را انتخاب کنید</span>
+    </ng-template>
+    <ng-template #selectedItemTemplate let-selected>
+      <div>{{ selected.text }}</div>
+    </ng-template>
+    <ng-template #itemTemplate let-model>
+      <div class="px-4 py-2">{{ model.text }}</div>
+    </ng-template>
+  </app-dropdown>
+
+  <app-dropdown *appAdminLevel="['national', 'province']"  (itemChange)="countiesChanged($event)" [items]="counties()"
+                [datasetFilter]="[(modelPrefix ? modelPrefix + '.' : '') + 'CountyId']"
+                [selectedItem]="selectedCounty()"
+                class="col-6"
+                [hasReset]="true"
+                label="شهرستان">
+    <ng-template #placeHolder>
+      <span>شهرستان را انتخاب کنید</span>
+    </ng-template>
+    <ng-template #selectedItemTemplate let-selected>
+      <div>{{ selected.text }}</div>
+    </ng-template>
+    <ng-template #itemTemplate let-model>
+      <div class="px-4 py-2">{{ model.text }}</div>
+    </ng-template>
+  </app-dropdown>
+
+</div>
