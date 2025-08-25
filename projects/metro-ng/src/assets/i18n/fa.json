@@ -1,0 +1,48 @@
+{
+  "ALERT": {
+    "CANCEL": "انصراف",
+    "CONFIRM": "بله",
+    "DENY": "خیر",
+    "BACK": "بازگشت"
+  },
+"DATETIME": {
+    "DAYS": {
+      "SAT": "شنبه",
+      "SUN": "یکشنبه",
+      "MON": "دوشنبه",
+      "TUE": "سه‌شنبه",
+      "WED": "چهارشنبه",
+      "THU": "پنجشنبه",
+      "FRI": "جمعه"
+    },
+    "PLACEHOLDER": "را انتخاب کنید",
+    "ERRORS": {
+      "REQUIRED": "{{label}} الزامی است.",
+      "MAX": "حداکثر مقدار باید {{max}} باشد."
+    }
+  },
+  "DROPDOWN": {
+    "PLACEHOLDER": "{{label}} را انتخاب کنید",
+    "SEARCH": "جستجو {{label}}",
+    "EMPTY": "هیچ آیتمی وجود ندارد.",
+    "ERRORS": {
+      "REQUIRED": "{{label}} الزامی است.",
+      "MAX": "حداکثر مقدار باید {{max}} باشد."
+    }
+  },
+  "INPUT": {
+    "PLACEHOLDER": "{{label}} را وارد کنید",
+    "ERRORS": {
+      "REQUIRED": "{{label}} الزامی است.",
+      "MAX_LENGTH": "تعداد حداکثر کاراکتر {{label}} {{max}} می باشد.",
+      "MIN_LENGTH": "تعداد حداقل کاراکتر {{label}} {{min}} می باشد.",
+      "EMAIL": "قالب ایمیل {{label}} صحیح نیست.",
+      "PATTERN": "قالب {{label}} صحیح نیست.",
+      "MAX": "حداکثر مقدار باید {{max}} باشد."
+    }
+  },
+  "BUTTON": {
+    "PROCESSING": "در حال ذخیره..."
+  }
+}
+

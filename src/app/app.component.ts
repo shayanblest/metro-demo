@@ -1,6 +1,5 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Router, RouterOutlet} from '@angular/router';
-import {ACCESS_TOKEN_KEY} from './core/Services/token.service';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { RouterOutlet} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -12,7 +11,7 @@ import {ACCESS_TOKEN_KEY} from './core/Services/token.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
 
   ngOnInit(): void {

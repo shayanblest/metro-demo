@@ -1,0 +1,76 @@
+<label *ngIf="label && showLabel" class="mb-2">
+  <span *ngIf="isRequired" class="text-danger">*</span>
+  <span class="fw-400 fs-7">{{ label }}</span>
+</label>
+
+<input #dateTimeInp type="text" value=""
+       class="form-control col inp-ltr {{ disabledDate ? 'disabled' : ''}}" readonly
+       [placeholder]="(showPlaceHolder && (label || placeholder))
+         ? (placeholder || (label + ' ' + metroTranslate.instant('DATETIME.PLACEHOLDER')))
+         : ''">
+
+<div #calendar class="datetime-picker card">
+  <div class="dp-container" dir="ltr">
+    <div class="dp-calendar px-2" dir="rtl">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <button type="button" class="btn btn-link-dark p-1 rotate-rtl" (click)="prevMonth()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+
+        <div class="d-flex">
+          <span class="me-1">{{ jalaaliMonths[val!.month - 1] }}</span>
+          <span>{{ val!.year | metroPersianDigits }}</span>
+        </div>
+
+        <button type="button" class="btn btn-link-dark p-1 rotate-rtl" (click)="nextMonth()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+      </div>
+
+      <table class="dp-table">
+        <thead>
+        <tr>
+          <th>{{ metroTranslate.instant('DATETIME.DAYS.SAT') }}</th>
+          <th>{{ metroTranslate.instant('DATETIME.DAYS.SUN') }}</th>
+          <th>{{ metroTranslate.instant('DATETIME.DAYS.MON') }}</th>
+          <th>{{ metroTranslate.instant('DATETIME.DAYS.TUE') }}</th>
+          <th>{{ metroTranslate.instant('DATETIME.DAYS.WED') }}</th>
+          <th>{{ metroTranslate.instant('DATETIME.DAYS.THU') }}</th>
+          <th>{{ metroTranslate.instant('DATETIME.DAYS.FRI') }}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let week of weeks;">
+          <td *ngFor="let day of days;">
+            <button type="button" (click)="selectDate(weeksOfMonth[week][day])"
+                    *ngIf="weeksOfMonth[week][day]?.day"
+                    [class.btn-primary]="(weeksOfMonth[week][day] | metroToTimeStamp) === (value | metroToTimeStamp)"
+                    class="btn btn-link-dark px-2 py-1">
+              {{ weeksOfMonth[week][day]!.day | metroPersianDigits }}
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="years" #yearsElement>
+      <li *ngFor="let year of years">
+        <button type="button" [class.btn-primary]="val?.year === year" (click)="selectYear(year)" class="btn btn-link-dark p-2">
+          {{ year | metroPersianDigits }}
+        </button>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<ul *ngIf="myControl?.touched && myControl?.errors" class="text-danger mt-2 p-0 mb-0 text-start">
+  <li *ngIf="myControl?.errors?.['required']">
+    {{ metroTranslate.instant('DATETIME.ERRORS.REQUIRED', { label: label }) }}
+  </li>
+  <li *ngIf="myControl?.errors?.['max']">
+    {{ metroTranslate.instant('DATETIME.ERRORS.MAX', { max: myControl?.errors?.['max'].max }) }}
+  </li>
+</ul>

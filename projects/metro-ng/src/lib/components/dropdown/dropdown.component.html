@@ -1,0 +1,53 @@
+<div class="position-relative" [class.active]="isOpened">
+  <label class="mb-2" *ngIf="label && showLabel">
+    <span class="text-danger" *ngIf="isRequired">*</span>
+    <span class="fw-400 fs-7">{{ label }}</span>
+  </label>
+
+  <div class="form-control d-flex justify-content-between align-items-center c-pointer"
+       (click)="toggle()">
+    <div class="d-flex">
+      <ng-container *ngIf="selectedItem" [ngTemplateOutlet]="selectedItemTemplate"
+                    [ngTemplateOutletContext]="{ $implicit: selectedItem }">
+      </ng-container>
+
+      <div *ngIf="!selectedItem" class="text-black-50 fs-7 user-select-none">
+        <ng-container *ngIf="placeHolder" [ngTemplateOutlet]="placeHolder"></ng-container>
+        <div *ngIf="!placeHolder" class="dd-placeHolder">
+          {{ metroTranslate.instant('DROPDOWN.PLACEHOLDER', { label: label }) }}
+        </div>
+      </div>
+    </div>
+
+    <i class="bi bi-chevron-down" id="icon"></i>
+  </div>
+
+  <div class="border rounded position-absolute end-0 start-0 bg-white" *ngIf="isOpened">
+    <div class="p-4 pb-0 mb-4" *ngIf="searchable">
+      <input type="text" [(ngModel)]="searchValue"
+             [placeholder]="metroTranslate.instant('DROPDOWN.SEARCH', { label: (searchLabel || label) })"
+             metroLibInputFilter="{{searchInputFilter}}"
+             class="form-control"
+             (input)="onSearchInput($event)" #searchInput>
+    </div>
+
+    <ul class="px-0" *ngIf="items.length > 0">
+      <li *ngFor="let item of items" (click)="selectItem(item)" class="c-pointer">
+        <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
+      </li>
+    </ul>
+
+    <div class="p-5" *ngIf="items.length < 1">
+      {{ metroTranslate.instant('DROPDOWN.EMPTY') }}
+    </div>
+  </div>
+</div>
+
+<ul *ngIf="myControl?.touched && myControl?.errors" class="text-danger mt-2 p-0 mb-0 text-start">
+  <li *ngIf="myControl?.errors?.['required']">
+    {{ metroTranslate.instant('DROPDOWN.ERRORS.REQUIRED', { label: label }) }}
+  </li>
+  <li *ngIf="myControl?.errors?.['max']">
+    {{ metroTranslate.instant('DROPDOWN.ERRORS.MAX', { max: myControl?.errors?.['max'].max }) }}
+  </li>
+</ul>

@@ -1,0 +1,17 @@
+app-dropdown{
+  ul{
+    list-style-type: none;
+    margin: 0;
+    max-height: 230px;
+    overflow-y: auto;
+
+    &>li:hover {
+      background-color: white;
+    }
+  }
+
+  &>.active {
+    z-index: 15;
+  }
+
+}

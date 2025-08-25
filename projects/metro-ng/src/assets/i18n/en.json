@@ -1,0 +1,48 @@
+{
+  "ALERT": {
+    "CANCEL": "Cancel",
+    "CONFIRM": "Yes",
+    "DENY": "No",
+    "BACK": "Back"
+  },
+  "DATETIME": {
+    "DAYS": {
+      "SAT": "Saturday",
+      "SUN": "Sunday",
+      "MON": "Monday",
+      "TUE": "Tuesday",
+      "WED": "Wednesday",
+      "THU": "Thursday",
+      "FRI": "Friday"
+    },
+    "PLACEHOLDER": "Select",
+    "ERRORS": {
+      "REQUIRED": "{{label}} is required.",
+      "MAX": "Maximum value must be {{max}}."
+    }
+  },
+  "DROPDOWN": {
+    "PLACEHOLDER": "Select {{label}}",
+    "SEARCH": "Search {{label}}",
+    "EMPTY": "No items found.",
+    "ERRORS": {
+      "REQUIRED": "{{label}} is required.",
+      "MAX": "Maximum value must be {{max}}."
+    }
+  },
+  "INPUT": {
+    "PLACEHOLDER": "Enter {{label}}",
+    "ERRORS": {
+      "REQUIRED": "{{label}} is required.",
+      "MAX_LENGTH": "Maximum characters for {{label}} is {{max}}.",
+      "MIN_LENGTH": "Minimum characters for {{label}} is {{min}}.",
+      "EMAIL": "{{label}} must be a valid email.",
+      "PATTERN": "{{label}} has an invalid format.",
+      "MAX": "Maximum value must be {{max}}."
+    }
+  },
+  "BUTTON": {
+    "PROCESSING": "Saving..."
+  }
+}
+

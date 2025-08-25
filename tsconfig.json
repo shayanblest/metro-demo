@@ -22,12 +22,25 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "metro-ng": [
+        "./dist/ui"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "references": [
+    {
+      "path": "./projects/metro-ng/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/metro-ng/tsconfig.spec.json"
+    }
+  ]
 }
